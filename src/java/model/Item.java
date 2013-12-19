@@ -13,6 +13,15 @@ public class Item implements Serializable, ItemDTO {
     private String name;
     private int quantity;
     private BigDecimal price;
+    
+    public Item() {
+    }
+
+    public Item(String productName, int quantity, BigDecimal price) {
+        this.name = productName;
+        this.quantity = quantity;
+        this.price = price;
+    }
 
     public String getName() {
         return name;

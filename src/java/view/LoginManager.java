@@ -44,16 +44,23 @@ public class LoginManager implements Serializable {
             if (login) {
                 //Pass a DTO representing the user post in database to UserData backing bean
                 userData.setUserInfo(loginFacade.getUserInfoDTO(username));
+                boolean admin = userData.getUserInfo().isAdmin();
                 try {
-                    FacesContext.getCurrentInstance().getExternalContext().
-                            redirect("secured/shopfront.xhtml");
+                    if (admin) {
+                        FacesContext.getCurrentInstance().getExternalContext().
+                                redirect("secured/adminfront.xhtml");                        
+                    }
+                    else {
+                        FacesContext.getCurrentInstance().getExternalContext().
+                                redirect("secured/shopfront.xhtml");
+                    }
                 } catch (IOException ex) {
                     System.out.println("Problem redirecting at succesful login");
                 }
             }
             else {
                 FacesContext.getCurrentInstance().addMessage("loginform:username", 
-                        new FacesMessage("Incorrect password"));
+                        new FacesMessage("Access denied"));
             }
         } catch (EJBException ex) {
             FacesContext.getCurrentInstance().addMessage("loginform:username", 
