@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Acme Plastic Gnomes Shop</title>
+    </h:head>
+    <h:body>
+        <h1>Welcome to the Acme Plastic Gnomes webshop, #{shopManager.userData.userInfo.getname()}!</h1>
+        <h:form>
+            <h:dataTable id="inventory" bgcolor="pink" value="#{shopManager.inventory}" var="item" border="1" >
+                <f:facet name="header">
+                    <h:outputText value="Our Available Items"></h:outputText>
+                </f:facet>
+                <h:column>
+                    <f:facet name="header">Item name</f:facet>
+                    #{item.name}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Price</f:facet>
+                    #{item.price}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Available</f:facet>
+                    #{item.quantity}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Add item to cart</f:facet>
+                    <h:commandButton value="Add" action="#{shoppingCartManager.addToShoppingCart(item, 1)}" />
+                </h:column>
+            </h:dataTable>
+        </h:form>
+        <hr/>
+        <h:form>
+            <h:dataTable id="shoppingcart" bgcolor="cyan" value="#{shoppingCartManager.shoppingCart}" var="cartitem" border="1" >
+                <f:facet name="header">
+                    <h:outputText value="Shopping cart"></h:outputText>
+                </f:facet>
+                <h:column>
+                    <f:facet name="header">Item name</f:facet>
+                    #{cartitem.name}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Price</f:facet>
+                    #{cartitem.price}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Quantity</f:facet>
+                    #{cartitem.quantity}
+                </h:column>
+                <h:column>
+                        <f:facet name="header">Remove item from cart</f:facet>
+                        <h:commandButton value="Remove" action="#{shoppingCartManager.removeFromShoppingCart(cartitem, 1)}" />
+                </h:column>
+                <f:facet name="footer">
+                    <h:outputText value="Total: #{shoppingCartManager.total}" />
+                </f:facet>
+            </h:dataTable>
+        </h:form>       
+        <hr/>
+        <h:form>
+            <h:commandButton action="#{shoppingCartManager.checkout()}" value="Checkout" />
+        </h:form>
+        <hr/>
+        <h:form>
+            <h:commandButton action="#{shopManager.logout}" value="Logout" />
+        </h:form>
+    </h:body>
+</html>
