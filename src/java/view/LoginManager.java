@@ -11,6 +11,10 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+/**
+ *
+ * @author Kalle
+ */
 @Named("loginManager")
 @RequestScoped
 public class LoginManager implements Serializable {
@@ -22,6 +26,9 @@ public class LoginManager implements Serializable {
     private String password;
     private String validatePassword;
         
+    /**
+     * Called from the html interface when a new customer wants to register.
+     */
     public void register() {
         if (password.equals(validatePassword)) {
             try {
@@ -38,6 +45,10 @@ public class LoginManager implements Serializable {
         }
     }
     
+    /**
+     * called when a user wants to log in or when a succesful registration has
+     * occurred. also redirects the user to the correct page if login is successful.
+     */
     public void login() {
         try {
             boolean login = loginFacade.login(username, password);
@@ -68,26 +79,51 @@ public class LoginManager implements Serializable {
         }
     }
     
+    /**
+     *
+     * @return username of the current user
+     */
     public String getUsername() {
         return username;
     }
 
+    /**
+     *
+     * @param username username of the current user
+     */
     public void setUsername(String username) {
         this.username = username;
     }
 
+    /**
+     *
+     * @return The password of the current user
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     *
+     * @param password set password of the current user
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    /**
+     *
+     * @return The password validation 
+     */
     public String getValidatePassword() {
         return validatePassword;
     }
 
+    /**
+     *
+     * @param validatePassword sets the valitation password for comparison when
+     * trying to register
+     */
     public void setValidatePassword(String validatePassword) {
         this.validatePassword = validatePassword;
     }
