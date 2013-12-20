@@ -8,6 +8,8 @@ import java.util.List;
 import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 
 @Stateful
 public class ShoppingCart implements ShoppingCartFacade {
@@ -24,14 +26,11 @@ public class ShoppingCart implements ShoppingCartFacade {
         this.shoppingCart = new LinkedList();
     }
     
-//    public ShoppingCartDTO getShoppingCartDTO() {
-//        return this;
-//    }
-    
     public List<ShoppingCartItem> getShoppingCart() {
         return shoppingCart;
     }
     
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void addItemToCart(String name, int quantity, BigDecimal price) {
         ShoppingCartItem newItem = new ShoppingCartItem(name, quantity, price);
         if (shoppingCart.contains(newItem)) {
@@ -43,8 +42,10 @@ public class ShoppingCart implements ShoppingCartFacade {
         else {
             shoppingCart.add(newItem);
         }
+        shopFacade.changeItemQuantity(name, -quantity);
     }
     
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void removeItemFromCart(ShoppingCartItem item, int quantity) {
         if (item.getQuantity() == quantity) {
             shoppingCart.remove(item);
@@ -52,6 +53,7 @@ public class ShoppingCart implements ShoppingCartFacade {
         else {
             item.setQuantity(item.getQuantity() - quantity);
         }
+        shopFacade.changeItemQuantity(item.getName(), quantity);
     }
     
     public BigDecimal getTotal() {
@@ -70,13 +72,13 @@ public class ShoppingCart implements ShoppingCartFacade {
     }   
     
     public void checkout() {
-        for (ShoppingCartItem item : shoppingCart) {
-            shopFacade.buyItem(item.getName(), item.getQuantity());
-        }
         shoppingCart.clear();
     }
     
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void putBackItemsFromCart() {
-        //This method should return all items in shopping cart to database.
+        for (ShoppingCartItem item : shoppingCart) {
+            shopFacade.changeItemQuantity(item.getName(), item.getQuantity());
+        }
     }
 }
