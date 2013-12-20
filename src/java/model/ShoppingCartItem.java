@@ -2,37 +2,71 @@ package model;
 
 import java.math.BigDecimal;
 
+/**
+ *
+ * @author Kalle
+ */
 public class ShoppingCartItem {
     private String name;
     private int quantity;
     private BigDecimal price;
     
+    /**
+     *
+     * @param name
+     * @param quantity
+     * @param price
+     */
     public ShoppingCartItem(String name, int quantity, BigDecimal price) {
         this.name = name;
         this.quantity = quantity;
         this.price = price;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getQuantity() {
         return quantity;
     }
 
+    /**
+     *
+     * @param quantity
+     */
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
+    /**
+     *
+     * @return
+     */
     public BigDecimal getPrice() {
         return price;
     }
 
+    /**
+     *
+     * @param price
+     */
     public void setPrice(BigDecimal price) {
         this.price = price;
     }

@@ -11,21 +11,35 @@ import javax.ejb.Stateful;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 
+/**
+ *
+ * @author Kalle
+ */
 @Stateful
 public class ShoppingCart implements ShoppingCartFacade {
     @EJB
     private ShopFacade shopFacade;
     private List<ShoppingCartItem> shoppingCart;
     
+    /**
+     *
+     */
     @PreDestroy
     public void preDestroy() {
         putBackItemsFromCart();
     }
     
+    /**
+     *
+     */
     public void createShoppingCart() {
         this.shoppingCart = new LinkedList();
     }
     
+    /**
+     *
+     * @return
+     */
     public List<ShoppingCartItem> getShoppingCart() {
         return shoppingCart;
     }
@@ -45,6 +59,11 @@ public class ShoppingCart implements ShoppingCartFacade {
         shopFacade.changeItemQuantity(name, -quantity);
     }
     
+    /**
+     *
+     * @param item
+     * @param quantity
+     */
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void removeItemFromCart(ShoppingCartItem item, int quantity) {
         if (item.getQuantity() == quantity) {
@@ -56,6 +75,10 @@ public class ShoppingCart implements ShoppingCartFacade {
         shopFacade.changeItemQuantity(item.getName(), quantity);
     }
     
+    /**
+     *
+     * @return
+     */
     public BigDecimal getTotal() {
         if (shoppingCart.isEmpty()) {
             return BigDecimal.ZERO;
@@ -69,12 +92,18 @@ public class ShoppingCart implements ShoppingCartFacade {
             }
             return total;
         }
-    }   
-    
+    }
+
+    /**
+     *
+     */
     public void checkout() {
         shoppingCart.clear();
     }
     
+    /**
+     *
+     */
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void putBackItemsFromCart() {
         for (ShoppingCartItem item : shoppingCart) {

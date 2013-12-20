@@ -14,6 +14,10 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import model.ItemDTO;
 
+/**
+ *
+ * @author Kalle
+ */
 @Named("shopManager")
 @SessionScoped
 public class ShopManager implements Serializable {
@@ -24,6 +28,9 @@ public class ShopManager implements Serializable {
     @Inject
     private ShoppingCartManager shoppingCartManager;
     
+    /**
+     * This method is called when  user wants to log out from the shop GUI
+     */
     public void logout() {
         shoppingCartManager.putBackItemsFromCart();
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
@@ -35,10 +42,20 @@ public class ShopManager implements Serializable {
         }
     }
 
+    /**
+     *
+     * @return returns a data access object (DAO) that is an interface exposing 
+     * some entity getters and setters for information about the user.
+     */
     public UserData getUserData() {
         return userData;
     }
 
+    /**
+     *
+     * @return returns a data access object (DAO) that is an interface exposing
+     * the current items availible for sale.
+     */
     public List<ItemDTO> getInventory() {
         return shopFacade.getInventory();
     }

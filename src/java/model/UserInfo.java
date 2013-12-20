@@ -4,7 +4,10 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-
+/**
+ *
+ * @author Kalle
+ */
 @Entity
 public class UserInfo implements Serializable, UserInfoDTO {
     private static final long serialVersionUID = 1L;
@@ -14,9 +17,17 @@ public class UserInfo implements Serializable, UserInfoDTO {
     private boolean admin;
     private boolean banned;
     
+    /**
+     *
+     */
     public UserInfo() {
     }
     
+    /**
+     *
+     * @param name
+     * @param password
+     */
     public UserInfo(String name, String password) {
         this.name = name;
         this.password = password;
@@ -24,6 +35,12 @@ public class UserInfo implements Serializable, UserInfoDTO {
         this.banned = false;
     }
     
+    /**
+     *
+     * @param name
+     * @param password
+     * @param admin
+     */
     public UserInfo(String name, String password, boolean admin) {
         this.name = name;
         this.password = password;
@@ -31,34 +48,66 @@ public class UserInfo implements Serializable, UserInfoDTO {
         this.banned = false;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getname() {
         return name;
     }
 
+    /**
+     *
+     * @param name
+     */
     public void setname(String name) {
         this.name = name;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     *
+     * @param password
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isAdmin() {
         return admin;
     }
 
+    /**
+     *
+     * @param admin
+     */
     public void setAdmin(boolean admin) {
         this.admin = admin;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isBanned() {
         return banned;
     }
 
+    /**
+     *
+     * @param banned
+     */
     public void setBanned(boolean banned) {
         this.banned = banned;
     }
