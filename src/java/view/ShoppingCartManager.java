@@ -7,8 +7,8 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
+import model.ItemDTO;
 import model.ShoppingCartItem;
 
 @Named("shoppingCartManager")
@@ -16,28 +16,22 @@ import model.ShoppingCartItem;
 public class ShoppingCartManager implements Serializable {
     @EJB
     private ShoppingCartFacade shoppingCartFacade;
-    @Inject
-    private ShopManager shopManager;
-//    @EJB
-//    private ShoppingCartDTO shoppingCart;
     
     @PostConstruct
     public void init() {
         shoppingCartFacade.createShoppingCart();
-//        shoppingCart = shoppingCartFacade.getShoppingCart();
     }
     
     public List<ShoppingCartItem> getShoppingCart() {
         return shoppingCartFacade.getShoppingCart();
     }
     
-    public void addToShoppingCart(ShoppingCartItem item, int quantity) {
+    public void addToShoppingCart(ItemDTO item, int quantity) {
         if (quantity > item.getQuantity()) {
             //Cannot add this many items to cart
         }
         else {
             shoppingCartFacade.addItemToCart(item.getName(), quantity, item.getPrice());
-            shopManager.removeItemFromInventory(item, quantity);
         }
     }
     
@@ -47,8 +41,11 @@ public class ShoppingCartManager implements Serializable {
         }
         else {
             shoppingCartFacade.removeItemFromCart(item, quantity);
-            shopManager.addItemToInventory(item, quantity);
         }
+    }
+    
+    public void putBackItemsFromCart() {
+        shoppingCartFacade.putBackItemsFromCart();
     }
     
     public void checkout() {

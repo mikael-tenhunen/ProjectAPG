@@ -47,10 +47,10 @@
         <h:inputText id="itemname" value="#{adminManager.newItemName}" required="true" />
         <br/>
         <h:outputLabel for="quantity" value="Quantity: " />
-        <h:inputSecret id="quantity" value="#{adminManager.newItemQuantity}" required="true" />
+        <h:inputText id="quantity" value="#{adminManager.newItemQuantity}" required="true" />
         <br/>
         <h:outputLabel for="itemprice" value="Price: " />
-        <h:inputSecret id="itemprice" value="#{adminManager.newItemPrice}" required="true" />
+        <h:inputText id="itemprice" value="#{adminManager.newItemPrice}" required="true" />
         <br/>
         <h:commandButton value="Add Item" action="#{adminManager.addProduct}" />
         </h:form>
