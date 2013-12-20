@@ -47,7 +47,7 @@ public class LoginManager implements Serializable {
                 userData.setUserInfo(loginFacade.getUserInfoDTO(username));
                 try {
                     FacesContext.getCurrentInstance().getExternalContext().
-                            redirect("secured/shopfront.xhtml");
+                            redirect("secured/adminfront.xhtml");
                 } catch (IOException ex) {
                     System.out.println("Problem redirecting at succesful login");
                 }
