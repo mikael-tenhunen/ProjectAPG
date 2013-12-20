@@ -7,8 +7,6 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -21,8 +19,6 @@ import model.ItemDTO;
 public class ShopManager implements Serializable {
     @EJB
     private ShopFacade shopFacade;
-//    @EJB
-//    private ShoppingCartFacade shoppingCartFacade;
     @Inject
     private UserData userData;
     @Inject
