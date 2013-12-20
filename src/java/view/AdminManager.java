@@ -7,6 +7,9 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
+/**
+ * Backing bean for the administrator view adminfront
+ */
 @Named("adminManager")
 @SessionScoped
 public class AdminManager implements Serializable {
@@ -18,8 +21,8 @@ public class AdminManager implements Serializable {
     private String userToBan;
     
     /**
-     * is called when admin wants to change the "banned" status of a specific user
-     * @param ban True if user is to be banned. False is user is supposed
+     * Called to change the "banned" status of a specific user
+     * @param ban True if user is to be banned. False is user is
      * to be unbanned
      */
     public void changeBanned(boolean ban) {
@@ -27,10 +30,10 @@ public class AdminManager implements Serializable {
     }
     
     /**
-     * Called when admin wants to increase or decrease the quantity of an already
+     * Called when admin wants to change the quantity of an already
      * existing product.
      * @param productName Name of the product to be altered
-     * @param quantity Can be -1 or 1 depending on wether you want to increase 
+     * @param quantity Can be positive or negative, depending on whether you want to increase 
      * or decrease the quantity.
      */
     public void changeQuantity(String productName, int quantity) {
@@ -38,7 +41,7 @@ public class AdminManager implements Serializable {
     }
 
     /**
-     *Called when the admin wants a specific product removed from the list
+     * Called when the admin wants a specific product removed from the database
      * completely.
      * @param productName Name of the product that is going to be removed
      */
@@ -47,15 +50,13 @@ public class AdminManager implements Serializable {
     }
     
     /**
-     * Called when the admin wants a specific product added to the list of
-     * availalbe purchases
+     * Called when the admin wants a specific product added to the database.
      */
     public void addProduct() {
         adminFacade.addProduct(newItemName, newItemQuantity, newItemPrice);
     }
 
     /**
-     *
      * @return returns the name of the product that the admin wants to add.
      */
     public String getNewItemName() {
@@ -63,7 +64,6 @@ public class AdminManager implements Serializable {
     }
 
     /**
-     *
      * @param newItemName name of the new item
      */
     public void setNewItemName(String newItemName) {
@@ -71,7 +71,6 @@ public class AdminManager implements Serializable {
     }
 
     /**
-     *
      * @return the quantity of the item that admin wants to add
      */
     public int getNewItemQuantity() {
@@ -79,7 +78,6 @@ public class AdminManager implements Serializable {
     }
 
     /**
-     *
      * @param newItemQuantity returns the new item's quantity
      */
     public void setNewItemQuantity(int newItemQuantity) {
@@ -87,7 +85,6 @@ public class AdminManager implements Serializable {
     }
 
     /**
-     *
      * @return returns the price of the new item
      */
     public BigDecimal getNewItemPrice() {
@@ -95,24 +92,21 @@ public class AdminManager implements Serializable {
     }
 
     /**
-     *
-     * @param newItemPrice sets the price of the new item
+     * @param newItemPrice the price of the new item
      */
     public void setNewItemPrice(BigDecimal newItemPrice) {
         this.newItemPrice = newItemPrice;
     }
 
     /**
-     *
-     * @return returns the name of the person that is to be banned/unbanned
+     * @return the name of the person that is to be banned/unbanned
      */
     public String getUserToBan() {
         return userToBan;
     }
 
     /**
-     *
-     * @param userToBan sets name of the user that is going to be banned/unbanned
+     * @param userToBan name of the user that is going to be banned/unbanned
      */
     public void setUserToBan(String userToBan) {
         this.userToBan = userToBan;

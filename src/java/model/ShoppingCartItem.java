@@ -3,8 +3,8 @@ package model;
 import java.math.BigDecimal;
 
 /**
- *
- * @author Kalle
+ * Representation of product in shopping cart. When an item is added to shopping 
+ * cart, a ShoppingCartItem is instantiated.
  */
 public class ShoppingCartItem {
     private String name;
@@ -12,7 +12,6 @@ public class ShoppingCartItem {
     private BigDecimal price;
     
     /**
-     *
      * @param name
      * @param quantity
      * @param price
@@ -24,15 +23,13 @@ public class ShoppingCartItem {
     }
 
     /**
-     *
-     * @return
+     * @return name of item
      */
     public String getName() {
         return name;
     }
 
     /**
-     *
      * @param name
      */
     public void setName(String name) {
@@ -40,15 +37,13 @@ public class ShoppingCartItem {
     }
 
     /**
-     *
-     * @return
+     * @return number of this item in shopping cart
      */
     public int getQuantity() {
         return quantity;
     }
 
     /**
-     *
      * @param quantity
      */
     public void setQuantity(int quantity) {
@@ -56,15 +51,13 @@ public class ShoppingCartItem {
     }
 
     /**
-     *
-     * @return
+     * @return price of item
      */
     public BigDecimal getPrice() {
         return price;
     }
 
     /**
-     *
      * @param price
      */
     public void setPrice(BigDecimal price) {

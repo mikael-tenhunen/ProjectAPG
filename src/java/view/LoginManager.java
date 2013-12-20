@@ -12,8 +12,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
- *
- * @author Kalle
+ * Backing bean for the login page.
  */
 @Named("loginManager")
 @RequestScoped
@@ -27,7 +26,7 @@ public class LoginManager implements Serializable {
     private String validatePassword;
         
     /**
-     * Called from the html interface when a new customer wants to register.
+     * Registers a new customer.
      */
     public void register() {
         if (password.equals(validatePassword)) {
@@ -46,8 +45,8 @@ public class LoginManager implements Serializable {
     }
     
     /**
-     * called when a user wants to log in or when a succesful registration has
-     * occurred. also redirects the user to the correct page if login is successful.
+     * Called when a user wants to log in or when a successful registration has
+     * occurred. Also redirects the user to the correct page if login is successful.
      */
     public void login() {
         try {
@@ -80,8 +79,7 @@ public class LoginManager implements Serializable {
     }
     
     /**
-     *
-     * @return username of the current user
+     * @return username in username textfield
      */
     public String getUsername() {
         return username;
@@ -89,7 +87,7 @@ public class LoginManager implements Serializable {
 
     /**
      *
-     * @param username username of the current user
+     * @param username username entered in textfield
      */
     public void setUsername(String username) {
         this.username = username;
@@ -97,7 +95,7 @@ public class LoginManager implements Serializable {
 
     /**
      *
-     * @return The password of the current user
+     * @return The password in textfield
      */
     public String getPassword() {
         return password;
@@ -105,23 +103,21 @@ public class LoginManager implements Serializable {
 
     /**
      *
-     * @param password set password of the current user
+     * @param password password entered in textfield
      */
     public void setPassword(String password) {
         this.password = password;
     }
 
     /**
-     *
-     * @return The password validation 
+     * @return password repeated in textfield
      */
     public String getValidatePassword() {
         return validatePassword;
     }
 
     /**
-     *
-     * @param validatePassword sets the valitation password for comparison when
+     * @param validatePassword sets the validation password for comparison when
      * trying to register
      */
     public void setValidatePassword(String validatePassword) {

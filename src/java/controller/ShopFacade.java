@@ -11,8 +11,8 @@ import javax.persistence.Query;
 import model.Item;
 
 /**
- *
- * @author Kalle
+ * EJB that exposes items for sale and provides means for changing quantities in 
+ * inventory.
  */
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 @Stateless
@@ -21,7 +21,7 @@ public class ShopFacade {
     private EntityManager em;
     
     /**
-     * Retreives all the items that are for sale
+     * Retrieves all the items that are for sale
      * @return List of all the items available for sale
      */
     public List<ItemDTO> getInventory() {
@@ -30,7 +30,7 @@ public class ShopFacade {
     }
 
     /**
-     * Changes the availible quantity of an item
+     * Changes the available quantity of an item
      * @param name Name of the item
      * @param quantityChange How much the quantity is to be increased or decreased
      * by.

@@ -6,8 +6,7 @@ import javax.ejb.Local;
 import model.ShoppingCartItem;
 
 /**
- *
- * @author Kalle
+ * Interface that exposes methods of the shopping cart to the controller layer.
  */
 @Local
 public interface ShoppingCartFacade {
@@ -22,13 +21,30 @@ public interface ShoppingCartFacade {
      */
     public void addItemToCart(String name, int quantity, BigDecimal price);
 
+    /**
+     * @param item object to remove from shopping cart
+     * @param quantity 
+     */
     public void removeItemFromCart(ShoppingCartItem item, int quantity);
 
+    /**
+     * @return total cost of items in shopping cart
+     */
     public BigDecimal getTotal();
 
+    /**
+     * Items in shopping cart are removed so they can be shipped.
+     */
     public void checkout();
 
+    /**
+     * Should be done before shopping cart bean is destroyed: put all items back 
+     * in database.
+     */
     public void preDestroy();
 
+    /**
+     * Put all items in cart back in database.
+     */
     public void putBackItemsFromCart();
 }

@@ -10,8 +10,7 @@ import model.Item;
 import model.UserInfo;
 
 /**
- *
- * @author Kalle
+ * EJB that handles administrator operations.
  */
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 @Stateless

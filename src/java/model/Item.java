@@ -6,8 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- *
- * @author Kalle
+ * An entity class that represents items in the database.
  */
 @Entity
 public class Item implements Serializable, ItemDTO {

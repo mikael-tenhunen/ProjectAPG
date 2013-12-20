@@ -12,8 +12,7 @@ import model.ItemDTO;
 import model.ShoppingCartItem;
 
 /**
- *
- * @author Kalle
+ * Backing bean for shopping cart.
  */
 @Named("shoppingCartManager")
 @SessionScoped
@@ -22,7 +21,7 @@ public class ShoppingCartManager implements Serializable {
     private ShoppingCartFacade shoppingCartFacade;
     
     /**
-     *Run at bean construction. Initializes shopping cart
+     * Called at bean construction. Initializes shopping cart.
      */
     @PostConstruct
     public void init() {
@@ -30,8 +29,6 @@ public class ShoppingCartManager implements Serializable {
     }
     
     /**
-     * calls the controller so it can reveive the current status of the shopping
-     * cart
      * @return the list of items in the shopping cart
      */
     public List<ShoppingCartItem> getShoppingCart() {
@@ -40,8 +37,8 @@ public class ShoppingCartManager implements Serializable {
     
     /**
      * Called when a user wants to add something to their shopping cart.
-     * @param item the item object the user wants to buy
-     * @param quantity the ammount of this specific item the user wants to buy
+     * @param item the item the user wants to buy
+     * @param quantity the amount of this specific item the user wants to buy
      */
     public void addToShoppingCart(ItemDTO item, int quantity) {
         if (quantity > item.getQuantity()) {
@@ -67,7 +64,7 @@ public class ShoppingCartManager implements Serializable {
     }
     
     /**
-     * called when a user logs out so all the items in his/her shopping cart 
+     * Called when a user logs out so all the items in his/her shopping cart 
      * are returned to the database.
      */
     public void putBackItemsFromCart() {
@@ -75,7 +72,7 @@ public class ShoppingCartManager implements Serializable {
     }
     
     /**
-     * called when a user decides to buy all the items currently in his/her 
+     * Called when a user decides to buy all the items currently in his/her 
      * shopping cart.
      */
     public void checkout() {
@@ -83,8 +80,7 @@ public class ShoppingCartManager implements Serializable {
     }
     
     /**
-     * 
-     * @return total cost of all the items in the shopping cart combined
+     * @return total cost of all the items in the shopping cart
      */
     public BigDecimal getTotal() {
         return shoppingCartFacade.getTotal();

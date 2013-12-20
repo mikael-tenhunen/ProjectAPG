@@ -10,8 +10,7 @@ import model.UserInfo;
 import model.UserInfoDTO;
 
 /**
- *
- * @author Kalle
+ * EJB that handles requests made from the login and register pages.
  */
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 @Stateless
@@ -48,9 +47,9 @@ public class LoginFacade {
     }
     
     /**
-     * Retreives the password of the user from the database
+     * Retrieves the password of the user from the database
      * @param username name of the user
-     * @return the corrent password that the user registered with
+     * @return the correct password that the user registered with
      * @throws EJBException 
      */
     private String getPassword(String username) throws EJBException{
@@ -61,7 +60,7 @@ public class LoginFacade {
     /**
      * returns the whole representation the specific user row in the dataaes
      * @param username name of the user
-     * @return All the availible information about the user.
+     * @return All the available information about the user.
      */
     public UserInfoDTO getUserInfoDTO(String username) {
         return em.find(UserInfo.class, username);

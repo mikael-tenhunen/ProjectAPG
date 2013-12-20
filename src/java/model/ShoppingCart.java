@@ -12,8 +12,7 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 
 /**
- *
- * @author Kalle
+ * EJB representing the shopping cart. 
  */
 @Stateful
 public class ShoppingCart implements ShoppingCartFacade {
@@ -22,7 +21,8 @@ public class ShoppingCart implements ShoppingCartFacade {
     private List<ShoppingCartItem> shoppingCart;
     
     /**
-     *
+     * Before destroying this bean, all the items in the shopping cart should 
+     * be returned to database.
      */
     @PreDestroy
     public void preDestroy() {
@@ -30,20 +30,25 @@ public class ShoppingCart implements ShoppingCartFacade {
     }
     
     /**
-     *
+     * Initialize shopping cart
      */
     public void createShoppingCart() {
         this.shoppingCart = new LinkedList();
     }
     
     /**
-     *
-     * @return
+     * @return a list of ShoppingCartItem objects
      */
     public List<ShoppingCartItem> getShoppingCart() {
         return shoppingCart;
     }
     
+    /**
+     * Adds an item to the cart and makes a call to remove it from database.
+     * @param name
+     * @param quantity
+     * @param price 
+     */
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void addItemToCart(String name, int quantity, BigDecimal price) {
         ShoppingCartItem newItem = new ShoppingCartItem(name, quantity, price);
@@ -60,7 +65,7 @@ public class ShoppingCart implements ShoppingCartFacade {
     }
     
     /**
-     *
+     * Removes and item from the cart and makes a call to put it back in the database.
      * @param item
      * @param quantity
      */
@@ -76,8 +81,7 @@ public class ShoppingCart implements ShoppingCartFacade {
     }
     
     /**
-     *
-     * @return
+     * @return Total cost of items in shopping cart
      */
     public BigDecimal getTotal() {
         if (shoppingCart.isEmpty()) {
@@ -95,14 +99,14 @@ public class ShoppingCart implements ShoppingCartFacade {
     }
 
     /**
-     *
+     * A dummy method that simply empties the shopping cart.
      */
     public void checkout() {
         shoppingCart.clear();
     }
     
     /**
-     *
+     * Puts back everything in shopping cart to database.
      */
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void putBackItemsFromCart() {

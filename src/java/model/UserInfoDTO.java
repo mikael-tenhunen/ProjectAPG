@@ -1,26 +1,22 @@
 package model;
 
-/**
- *
- * @author Kalle
- */
 public interface UserInfoDTO {
 
     /**
      *
-     * @return
+     * @return Name of user
      */
     public String getname();
 
     /**
      *
-     * @return
+     * @return Whether user is admin
      */
     public boolean isAdmin();
 
     /**
      *
-     * @return
+     * @return Whether user is banned
      */
     public boolean isBanned();
 }

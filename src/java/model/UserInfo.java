@@ -5,8 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- *
- * @author Kalle
+ * Entity class representing the table UserInfo.
  */
 @Entity
 public class UserInfo implements Serializable, UserInfoDTO {
@@ -24,7 +23,6 @@ public class UserInfo implements Serializable, UserInfoDTO {
     }
     
     /**
-     *
      * @param name
      * @param password
      */
@@ -36,7 +34,6 @@ public class UserInfo implements Serializable, UserInfoDTO {
     }
     
     /**
-     *
      * @param name
      * @param password
      * @param admin
@@ -49,8 +46,7 @@ public class UserInfo implements Serializable, UserInfoDTO {
     }
 
     /**
-     *
-     * @return
+     * @return name of user
      */
     public String getname() {
         return name;
@@ -58,23 +54,21 @@ public class UserInfo implements Serializable, UserInfoDTO {
 
     /**
      *
-     * @param name
+     * @param name name of user
      */
     public void setname(String name) {
         this.name = name;
     }
 
     /**
-     *
-     * @return
+     * @return user's password
      */
     public String getPassword() {
         return password;
     }
 
     /**
-     *
-     * @param password
+     * @param password password to set
      */
     public void setPassword(String password) {
         this.password = password;
@@ -89,24 +83,21 @@ public class UserInfo implements Serializable, UserInfoDTO {
     }
 
     /**
-     *
-     * @param admin
+     * @param admin admin status
      */
     public void setAdmin(boolean admin) {
         this.admin = admin;
     }
 
     /**
-     *
-     * @return
+     * @return banned status
      */
     public boolean isBanned() {
         return banned;
     }
 
     /**
-     *
-     * @param banned
+     * @param banned banned status
      */
     public void setBanned(boolean banned) {
         this.banned = banned;
