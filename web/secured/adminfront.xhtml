@@ -59,7 +59,7 @@
         <h:form>
         <h3>Ban/Unban user</h3>
         <h:outputLabel for="banuser" value="User to ban: " />
-        <h:inputText id="banuser" value="#{adminManager.userToBan}" required="true" />
+        <h:inputSecret id="banuser" value="#{adminManager.userToBan}" required="true" />
         <h:commandButton action="#{adminManager.changeBanned(true)}" value="Ban" />
         <h:commandButton action="#{adminManager.changeBanned(false)}" value="Unban" />
         <br/>
