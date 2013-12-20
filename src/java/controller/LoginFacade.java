@@ -21,8 +21,10 @@ public class LoginFacade {
     }
     
     public boolean login(String username, String password) {
+        UserInfoDTO userInfo = getUserInfoDTO(username);
         String correctPassword = getPassword(username);
-        if (correctPassword.equals(password)) {
+        boolean banned = userInfo.isBanned();
+        if (correctPassword.equals(password) && !banned) {
         return true;
         }
         else {

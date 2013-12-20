@@ -9,64 +9,65 @@
     <h:body>
         <h1>Welcome, #{shopManager.userData.userInfo.getname()}!</h1>
         <h:form>
-            <h:form>
-            <h:dataTable id="inventory" bgcolor="pink" value="#{shopManager.inventory}" var="item" border="1" >
-                <f:facet name="header">
-                    <h:outputText value="Our Available Items"></h:outputText>
-                </f:facet>
-                <h:column>
-                    <f:facet name="header">Item name</f:facet>
-                    #{item.name}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Price</f:facet>
-                    #{item.price}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Available</f:facet>
-                    #{item.quantity}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Decrease Quantity</f:facet>
-                    <h:commandButton value="Decrease" action="#{decreasequantity}" />
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Increase Quantity</f:facet>
-                    <h:commandButton value="Increase" action="#{increasequantity}" />
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Remove</f:facet>
-                    <h:commandButton value="Remove" action="#{remoiveitem}" />
-                </h:column>
-            </h:dataTable>
-            </h:form>
-            <hr/>
-            <h:form>
-            <h3>Add new item</h3>
-            <br/>
-            <h:outputLabel for="itemname" value="Item name: " />
-            <h:inputText id="itemname" value="#{setToItemnameVariable}" required="true" />
-            <br/>
-            <h:outputLabel for="quantity" value="Quantity: " />
-            <h:inputSecret id="quantity" value="#{setToItemQuantity}" required="true" />
-            <br/>
-            <h:outputLabel for="itemprice" value="Price: " />
-            <h:inputSecret id="itemprice" value="#{setToItemPrice}" required="true" />
-            <br/>
-            <h:commandButton value="Add Item" action="#{Additem}" />
-            </h:form>
-        
-            <hr/>
-            <h:form>
-            <h3>Ban user</h3>
-            <h:outputLabel for="banuser" value="User to ban: " />
-            <h:inputSecret id="banuser" value="#{usertoban}" required="true" />
-            <h:commandButton action="#{banmethod}" value="Ban" />
-            <br/>
-            <br/>
-            <hr/>
-            <h:commandButton action="#{shopManager.logout}" value="Logout" />
-            </h:form>
+        <h:dataTable id="inventory" bgcolor="pink" value="#{shopManager.inventory}" var="item" border="1" >
+            <f:facet name="header">
+                <h:outputText value="Our Available Items"></h:outputText>
+            </f:facet>
+            <h:column>
+                <f:facet name="header">Item name</f:facet>
+                #{item.name}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Price</f:facet>
+                #{item.price}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Available</f:facet>
+                #{item.quantity}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Decrease Quantity</f:facet>
+                <h:commandButton value="Decrease" action="#{adminManager.changeQuantity(item.name, -1)}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Increase Quantity</f:facet>
+                <h:commandButton value="Increase" action="#{adminManager.changeQuantity(item.name, 1)}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Remove</f:facet>
+                <h:commandButton value="Remove" action="#{adminManager.removeProduct(item.name)}" />
+            </h:column>
+        </h:dataTable>
+        </h:form>
+        <hr/>
+        <h:form>
+        <h3>Add new item</h3>
+        <br/>
+        <h:outputLabel for="itemname" value="Item name: " />
+        <h:inputText id="itemname" value="#{adminManager.newItemName}" required="true" />
+        <br/>
+        <h:outputLabel for="quantity" value="Quantity: " />
+        <h:inputSecret id="quantity" value="#{adminManager.newItemQuantity}" required="true" />
+        <br/>
+        <h:outputLabel for="itemprice" value="Price: " />
+        <h:inputSecret id="itemprice" value="#{adminManager.newItemPrice}" required="true" />
+        <br/>
+        <h:commandButton value="Add Item" action="#{adminManager.addProduct}" />
+        </h:form>
+
+        <hr/>
+        <h:form>
+        <h3>Ban/Unban user</h3>
+        <h:outputLabel for="banuser" value="User to ban: " />
+        <h:inputSecret id="banuser" value="#{adminManager.userToBan}" required="true" />
+        <h:commandButton action="#{adminManager.changeBanned(true)}" value="Ban" />
+        <h:commandButton action="#{adminManager.changeBanned(false)}" value="Unban" />
+        <br/>
+        <br/>
+        </h:form>
+        <h:form>
+        <hr/>
+        <h:commandButton action="#{shopManager.logout}" value="Logout" />
         </h:form>
     </h:body>
 </html>
